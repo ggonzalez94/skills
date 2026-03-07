@@ -1,10 +1,10 @@
 # Skills
 
-A collection of agent skills I find useful. These are designed to work with any [Agent Skills](https://agentskills.io)-compatible tool — Claude Code, Cursor, Gemini CLI, and others.
+A collection of agent skills I find useful. These are designed to work with any [Agent Skills](https://agentskills.io)-compatible tool — Claude Code, Cursor, OpenClaw, Gemini CLI, and others.
 
 ## Install
 
-Pick the skills you want using the [skills CLI](https://github.com/vercel-labs/skills):
+Pick the skills you want:
 
 ```bash
 npx skills add ggonzalez94/skills --skill agent-cli-design
