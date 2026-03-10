@@ -4,6 +4,8 @@ Do not guess chain IDs or token addresses — use this reference.
 
 ## Chain IDs
 
+### Mainnets
+
 | Chain | ID | Native Token |
 |---|---|---|
 | Ethereum | 1 | ETH |
@@ -13,9 +15,20 @@ Do not guess chain IDs or token addresses — use this reference.
 | Optimism | 10 | ETH |
 | Polygon | 137 | POL |
 
+### Testnets
+
+| Chain | ID | Native Token | L1 |
+|---|---|---|---|
+| Sepolia | 11155111 | ETH | — |
+| Hoodi | 560048 | ETH | — |
+| Base Sepolia | 84532 | ETH | Sepolia |
+| Taiko Hoodi | 167013 | ETH | Hoodi |
+
 ## Common Token Addresses
 
 ### USDC
+
+#### Mainnets
 
 | Chain | Address |
 |---|---|
@@ -25,6 +38,16 @@ Do not guess chain IDs or token addresses — use this reference.
 | Base | `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913` |
 | Optimism | `0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85` |
 | Polygon | `0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359` |
+
+#### Testnets
+
+| Chain | Address | Source |
+|---|---|---|
+| Sepolia | `0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238` | Circle |
+| Hoodi | `0x263898d2f6f8E153F1e4DD4CAEF86C93784fCf33` | Community |
+| Base Sepolia | `0x036CbD53842c5426634e7929541eC2318f3dCF7e` | Circle |
+
+> Taiko Hoodi does not have a canonical USDC deployment yet. Use the [bridge faucet](https://bridge.hoodi.taiko.xyz/faucet) for test tokens (HORSE).
 
 ### USDT
 
@@ -36,9 +59,11 @@ Do not guess chain IDs or token addresses — use this reference.
 | Optimism | `0x94b008aA00579c1307B0EF2c499aD98a8ce58e58` |
 | Polygon | `0xc2132D05D31c914a87C6611C10748AEb04B58e8F` |
 
-> USDT is not natively deployed on Base.
+> USDT is not natively deployed on Base. No canonical testnet deployments exist.
 
 ### WETH
+
+#### Mainnets
 
 | Chain | Address |
 |---|---|
@@ -48,3 +73,11 @@ Do not guess chain IDs or token addresses — use this reference.
 | Base | `0x4200000000000000000000000000000000000006` |
 | Optimism | `0x4200000000000000000000000000000000000006` |
 | Polygon | `0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619` |
+
+#### Testnets
+
+| Chain | Address |
+|---|---|
+| Sepolia | `0x7b79995e5f793A07Bc00c21412e50Ecae098E7f9` |
+| Hoodi | `0xE0decAa66aED871ac9eb924443D1Bf333Fdb062E` |
+| Base Sepolia | `0x4200000000000000000000000000000000000006` |
