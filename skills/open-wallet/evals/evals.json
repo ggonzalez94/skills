@@ -1,0 +1,35 @@
+{
+  "skill_name": "open-wallet",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to create a new crypto wallet for my AI agent that will only operate on Base. Set up the wallet, create a policy that restricts it to Base chain only with an expiry of June 2026, and give me an API key I can provision to the agent.",
+      "expected_output": "Should use OWS CLI or SDK to: 1) create a wallet with ows wallet create, 2) create a policy JSON with allowed_chains [eip155:8453] and expires_at 2026-06-30, 3) register the policy with ows policy create, 4) create an API key with ows key create linking the wallet and policy. Should explain how the agent uses the ows_key_ token.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have a Python script that needs to sign EVM transactions. I want to use the Open Wallet Standard. Show me how to set it up — create a wallet, sign a transaction, and also set up agent access so the script uses a scoped token instead of the raw passphrase.",
+      "expected_output": "Should install open-wallet-standard via pip, use Python SDK functions (create_wallet, create_policy, create_api_key, sign_transaction with the ows_key_ token as passphrase). Should use correct Python function names (snake_case) and show proper import from ows.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I want to import my existing Solana private key into OWS and set up agent access with chain restrictions so my agent can only sign on Solana and Base. The access should expire in 30 days.",
+      "expected_output": "Should use ows wallet import with --private-key --chain solana (or Python/Node equivalent with chain='solana'). Should create a policy with allowed_chains containing both solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp and eip155:8453, plus expires_at set 30 days from now. Should note that importing a Solana key generates all 8 chain accounts (random secp256k1 key for EVM chains).",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "I'm building a Node.js service that uses OWS to manage wallets for multiple AI agents. Each agent should have different permissions — Agent A can only sign on Base, Agent B can sign on Arbitrum and Optimism. Show me how to set this up with the Node.js SDK.",
+      "expected_output": "Should use @open-wallet-standard/core Node.js SDK. Create one wallet, create two separate policies (one for Base with eip155:8453, one for Arbitrum+Optimism with eip155:42161 and eip155:10), create two API keys each linked to their respective policy. Show correct Node.js function signatures (createWallet, createPolicy, createApiKey). Should demonstrate signing with each agent's token.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "prompt": "What chains does OWS support and what are the CAIP-2 identifiers I need to use in my policy files? I specifically need the IDs for Ethereum, Base, Solana, and Bitcoin.",
+      "expected_output": "Should provide the correct CAIP-2 identifiers: eip155:1 (Ethereum), eip155:8453 (Base), solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp (Solana), bip122:000000000019d6689c085ae165831e93 (Bitcoin). Should note that shorthand aliases only work in CLI context, and policy files MUST use full CAIP-2 identifiers. Should mention OWS supports 9 chain families total.",
+      "files": []
+    }
+  ]
+}
