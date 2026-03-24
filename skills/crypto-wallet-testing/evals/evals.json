@@ -1,0 +1,23 @@
+{
+  "skill_name": "crypto-wallet-testing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to deploy a smart contract on Base for testing. I have a testing wallet set up. Help me use it to deploy.",
+      "expected_output": "Should check for OWS wallet named 'testing' first, then check balance on Base, and use the wallet directly to sign/deploy. Should NOT create a disposable wallet. Should reference chain ID 8453 for Base.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "I have an old crypto testing wallet at ~/.config/crypto-wallet-testing/pk.hex and I just installed OWS. How do I migrate?",
+      "expected_output": "Should import the key into OWS with 'cat ~/.config/crypto-wallet-testing/pk.hex | ows wallet import --name testing --private-key'. Should scan balances across the 6 mainnets. Should explain that EVM addresses are identical so no fund transfers needed. Should ask before deleting the old key file.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "I need to send some USDC on Arbitrum but my testing wallet only has funds on Base. How do I get the funds there?",
+      "expected_output": "Should check balance on Base first, use defi CLI with LiFi provider to bridge from Base to Arbitrum, mention that LiFi can deliver native gas alongside the bridged token. Should use the testing wallet directly for the bridge, not create a disposable wallet. Should reference correct USDC addresses from chain-reference.md.",
+      "files": []
+    }
+  ]
+}
