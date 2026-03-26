@@ -5,7 +5,7 @@ description: Design principles and patterns for building CLIs that work well for
 
 # Agent-First CLI Design
 
-Principles for building CLIs that AI agents can use reliably. Adapted from [Justin Poehnelt's "Rewrite your CLI for AI Agents"](https://justin.poehnelt.com/posts/rewrite-your-cli-for-ai-agents/), based on patterns from the Google Workspace CLI.
+Principles for building CLIs that AI agents can use reliably. Adapted from [Justin Poehnelt's "Rewrite your CLI for AI Agents"](https://justin.poehnelt.com/posts/rewrite-your-cli-for-ai-agents/) and [Cursor's "CLI for Agents" skill](https://x.com/ericzakariasson/status/2036762680401223946), based on patterns from the Google Workspace CLI and the Cursor CLI.
 
 **Core tension:** Human DX optimizes for discoverability and forgiveness. Agent DX optimizes for predictability and defense-in-depth. Great CLIs serve both.
 
@@ -83,7 +83,44 @@ This lets agents discover capabilities without pre-loaded documentation.
 
 ---
 
-## 4. Context Window Discipline
+## 4. Examples Over Documentation in Help Text
+
+Agents pattern-match from examples more effectively than they parse prose descriptions. A single working invocation teaches an agent the flag syntax, argument ordering, and expected values faster than a paragraph of explanation — it's few-shot learning from your `--help` output.
+
+Every `--help` should include real, copy-pasteable invocations.
+
+**Bad** — flags and types only, agent must infer usage:
+```
+Options:
+  --env string    Target environment
+  --tag string    Image tag
+  --force         Skip confirmation
+```
+
+**Good** — includes working examples the agent can adapt directly:
+```
+Options:
+  --env string    Target environment
+  --tag string    Image tag (default: latest)
+  --force         Skip confirmation
+
+Examples:
+  mycli deploy --env staging
+  mycli deploy --env production --tag v1.2.3
+  mycli deploy --env staging --force
+```
+
+**What makes a good example set:**
+- Start with the simplest common case (minimal required flags)
+- Show a realistic full invocation (multiple flags, real-looking values)
+- Include edge cases agents are likely to hit (`--dry-run`, `--json` input, piped stdin)
+- Use concrete values, not placeholders — `--env staging` teaches more than `--env <ENV>`
+
+This complements schema introspection (§3): schemas give agents the structure, examples give them the pattern to follow. Both matter — schema for validation, examples for generation.
+
+---
+
+## 5. Context Window Discipline
 
 API responses consume agent token budget. Humans scroll; agents pay per token.
 
@@ -107,7 +144,7 @@ cli list --page-all --output ndjson
 
 ---
 
-## 5. Input Hardening Against Hallucinations
+## 6. Input Hardening Against Hallucinations
 
 Agents hallucinate in predictable patterns. Validate defensively:
 
@@ -124,7 +161,7 @@ Agents hallucinate in predictable patterns. Validate defensively:
 
 ---
 
-## 6. Safety Rails for Mutations
+## 7. Safety Rails for Mutations
 
 Mutations (create, update, delete) are where hallucinated parameters cause real damage.
 
@@ -145,7 +182,7 @@ mycli users delete --id 42 --dry-run
 
 ---
 
-## 7. Stable Exit Codes
+## 8. Stable Exit Codes
 
 Agents parse exit codes to decide next actions. Define and document them:
 
@@ -162,7 +199,7 @@ Never change exit code semantics across versions. Map internal error types to ex
 
 ---
 
-## 8. Headless Authentication
+## 9. Headless Authentication
 
 Agents cannot do browser-based OAuth flows. Support headless auth paths:
 
@@ -175,7 +212,7 @@ Document which commands need which auth. Make metadata-only commands (version, s
 
 ---
 
-## 9. Ship Agent Context, Not Just Commands
+## 10. Ship Agent Context, Not Just Commands
 
 Agents learn from injected context, not trial and error. Ship structured guidance:
 
@@ -195,7 +232,7 @@ A skill file is cheaper than a hallucination.
 
 ---
 
-## 10. Multi-Surface Architecture
+## 11. Multi-Surface Architecture
 
 Expose the same capabilities through multiple interfaces from a single source of truth:
 
@@ -228,11 +265,12 @@ Retrofit existing CLIs incrementally in this order:
 1. **`--output json`** - Machine-readable output with stable envelope
 2. **Input validation** - Reject control chars, path traversals, unknown flags
 3. **Stable exit codes** - Map errors to documented codes
-4. **Schema/describe command** - Runtime introspection
-5. **Field selection (`--select`/`--fields`)** - Protect context window
-6. **`--dry-run`** - Validate before mutating
-7. **Agent skill files** - Encode invariants and non-obvious behaviors
-8. **MCP surface** - Typed tool invocation (if wrapping structured APIs)
+4. **Examples in `--help`** - Copy-pasteable invocations agents can pattern-match from
+5. **Schema/describe command** - Runtime introspection
+6. **Field selection (`--select`/`--fields`)** - Protect context window
+7. **`--dry-run`** - Validate before mutating
+8. **Agent skill files** - Encode invariants and non-obvious behaviors
+9. **MCP surface** - Typed tool invocation (if wrapping structured APIs)
 
 ---
 
@@ -258,6 +296,7 @@ Retrofit existing CLIs incrementally in this order:
 - [ ] Mutations support `--dry-run`
 - [ ] Field selection available on list/read commands
 - [ ] Auth works via environment variables (no browser required)
+- [ ] `--help` includes copy-pasteable examples for every subcommand
 - [ ] Schema or describe command exists for runtime introspection
 - [ ] Agent skill files document invariants and non-obvious behaviors
 - [ ] Output pagination is bounded (`--limit`)
