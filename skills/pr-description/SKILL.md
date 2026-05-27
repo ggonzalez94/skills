@@ -1,6 +1,6 @@
 ---
 name: pr-description
-description: Use when creating a pull request, writing a PR description, or running gh pr create. Triggers on "create PR", "open PR", "ship", "push and create PR", or any workflow that ends with a pull request.
+description: Use whenever the user wants Claude to write or edit a pull request description/body — both creating a new PR and reshaping an existing one. Triggers on "open/create/raise a PR", "ship it", "ship this", "push and open the PR", "commit this and open a pr", "when done open a pr", "when everything is done open a pr", running `gh pr create` or `gh pr edit ... --body`, the explicit `/pr-description` invocation, and refinement asks like "make the PR description more clear / shorter", "drop the test plan section", "1 sentence of why", "explain WHY we're doing this". This skill exists to counter generic AI-slop PR bodies (`## Summary` headers, `- [x] verified X` checklists, "Generated with Claude" footers, narrating the diff).
 ---
 
 # PR Descriptions

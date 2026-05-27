@@ -1,0 +1,94 @@
+[
+  {
+    "query": "hey can you take a first look at PR #482 in our repo? i just want to know if this is even the right direction before i dig into the diff — no nits, just the shape",
+    "should_trigger": true
+  },
+  {
+    "query": "boss just dropped https://github.com/acme/api/pull/2014 in slack and asked if we should ship it. give me the high-level read — why it exists, fit with where we're heading, anything obviously scary. skip the typos",
+    "should_trigger": true
+  },
+  {
+    "query": "what's this PR doing and why does it exist? im looking at #77 and the description is basically empty. i don't want a code review, i want the why and the shape",
+    "should_trigger": true
+  },
+  {
+    "query": "is this the right architecture for the new auth refactor? PR is open on the auth-rewrite branch. give me a real opinion on the approach — line-by-line stuff can wait for a proper review",
+    "should_trigger": true
+  },
+  {
+    "query": "first pass on PR 991 please. i mostly care if it closes the linear ticket FOO-87 and doesn't break anything obvious. detailed review later if we decide to keep going",
+    "should_trigger": true
+  },
+  {
+    "query": "can you eyeball PR #5? someone on the team opened it and i have no context on what they're trying to do. just want the why and whether the approach makes sense, not nits",
+    "should_trigger": true
+  },
+  {
+    "query": "i need to approve a teammate's PR in 10 min. give me the quick context — why does it exist, is it aligned with where we're going, anything scary in it. no line-by-line nits, just a sanity read",
+    "should_trigger": true
+  },
+  {
+    "query": "should we merge https://github.com/acme/api/pull/640 ? give me a high level take, not a deep dive. mainly want to know if the approach fits and there's nothing obviously broken or unsafe",
+    "should_trigger": true
+  },
+  {
+    "query": "im looking at PR #312 — can you check the architecture and tell me if the new caching layer is sound? i want a real opinion on the approach, not just nits or typos",
+    "should_trigger": true
+  },
+  {
+    "query": "i don't understand what this PR does. can you explain it to me and tell me if its heading the right way? PR is #44 on this branch",
+    "should_trigger": true
+  },
+  {
+    "query": "give me context on PR #88 — change is about, heading the right way, looks risky? not a detailed review, just the framing",
+    "should_trigger": true
+  },
+  {
+    "query": "im about to push and open a PR — can you write a good description for it? something short, no markdown headers, no AI footer",
+    "should_trigger": false
+  },
+  {
+    "query": "babysit PR #88 — watch it until CI is green and the reviewer signs off, then merge it",
+    "should_trigger": false
+  },
+  {
+    "query": "do a thorough line-by-line code review on the current diff. i want every bug, every typo, every reuse opportunity",
+    "should_trigger": false
+  },
+  {
+    "query": "summarize PR #1203 — i need a one-paragraph blurb for the release notes",
+    "should_trigger": false
+  },
+  {
+    "query": "run a security audit on the Vault.sol contract i just added. check for reentrancy, access control, oracle manipulation, the works",
+    "should_trigger": false
+  },
+  {
+    "query": "ship it. push the branch, open the PR with a sensible title and body, tag @maria as reviewer",
+    "should_trigger": false
+  },
+  {
+    "query": "PR #44 looks suspicious — i want you to actually verify the fix works by running the app and reproducing the bug it claims to fix",
+    "should_trigger": false
+  },
+  {
+    "query": "look at the open PRs in this repo and tell me which ones are stale and need a nudge",
+    "should_trigger": false
+  },
+  {
+    "query": "i opened a PR earlier today, can you fix the conventional commit prefix in the title and tighten the body to 3 sentences?",
+    "should_trigger": false
+  },
+  {
+    "query": "review the code in src/auth/middleware.ts — i want a detailed quality pass, find every bug and style issue",
+    "should_trigger": false
+  },
+  {
+    "query": "give me a security-only review of PR #309. assume reentrancy is in scope, ignore everything else",
+    "should_trigger": false
+  },
+  {
+    "query": "PR #777 just got reviewer comments — go address them all and push the fixes",
+    "should_trigger": false
+  }
+]
