@@ -7,13 +7,17 @@ description: "Monitor and shepherd a GitHub PR to merge: review comments, fix CI
 
 Continuously monitor a GitHub PR, address review comments, fix CI failures, and merge when everything is green.
 
+## Determine the check interval
+
+Figure out how often to poll. If the user gave an interval — "every 5min" → `5m`, "check every 30 minutes" → `30m`, or a bare `5m`/`30m` — use that. Otherwise default to `10m`. Call this value `<interval>` and use it everywhere below.
+
 ## CRITICAL: How to invoke
 
-**Your ONLY action when this skill is triggered is to invoke `/loop 10m` with the prompt below.** Do NOT manually execute the steps yourself. Do NOT run any `gh` commands directly. Just call the `loop` skill and pass it the prompt between the `BEGIN PROMPT` and `END PROMPT` markers.
+**Your ONLY action when this skill is triggered is to invoke `/loop <interval>` with the prompt below.** Do NOT manually execute the steps yourself. Do NOT run any `gh` commands directly. Just call the `loop` skill and pass it the prompt between the `BEGIN PROMPT` and `END PROMPT` markers.
 
-Tell the user: "Starting babysit loop — I'll check PR #N every 10 minutes, address comments, fix CI, and merge when ready."
+Tell the user: "Starting babysit loop — I'll check PR #N every <interval>, address comments, fix CI, and merge when ready."
 
-Then invoke `/loop 10m` with this prompt:
+Then invoke `/loop <interval>` with this prompt:
 
 <!-- BEGIN PROMPT -->
 
